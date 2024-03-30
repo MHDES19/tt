@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+.title{
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    color: #504d47;
+    margin-top: 25px;
+    text-transform: capitalize;
+}
+::selection{
+    background-color:#1d1d1d ;
+}
+body{
+    background-color: #edebe7;
+    color: #948c83;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20%;
+    margin-top: 120px;
+}
+.time{
+    display: flex;
+    align-items: center;
+}
+.logo{
+    margin-right: 8px;
+}
+#timer{
+    font-size: 22px;
+}
+.cover{
+    width: 400px;
+    margin-left: 30px;
+    transition: opacity 1s ease;
+}
+.slider{
+    position: relative;
+    left: 22px;
+}
+.dots-container{
+    text-align: center;
+    margin-top: 18px;
+    margin-left: 30px;
+}
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #5D554C;
+    transition: all 0.7s ease;
+}
+.dot.active {
+    background-color: #5D554C;
+}
+
+.btn{
+    position: absolute;
+    top: 50%;
+    padding: 8px;
+    background-color: #454036;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#prev{
+    left: -32px;
+}
+.slider .btn:last-child{
+    right: -31px;
+}
+.time .unit{
+    display: inline-flex;
+    flex-direction: column;
+    margin: 17px;
+}
+.unit span:first-of-type{
+    text-align: center;
+    margin-bottom: 13px;
+    font-size: 32px;
+}
+.date{
+    text-align: center;
+    font-family: "Tangerine", cursive;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 52px;
+    margin-top: -9px;
+}
+.unit span:last-of-type{
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 21px;
+}
+.image{
+    max-width: 100%;
+}

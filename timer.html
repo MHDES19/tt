@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ttpd</title>
+    <script src="https://kit.fontawesome.com/6dc8da1a32.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="timer.css">
+    <link rel="web site icon" href="images/logo wh.png">
+    <!-- <script src="timer.js"></script> -->
+    
+</head>
+<body>
+    <h2 class="title">the tortured poets department</h2>
+    <div class="container">
+        <div class="cover">
+            <div class="slider">
+                <img src="images/third.png" alt="" class="image">
+                <img src="images/front.png" alt="" class="image">
+                <img src="images/Snapinsta.app_429472487_362879063289490_354302098926267118_n_1080.jpg" alt="" class="image">    
+                <img src="images/front 2.jpg" alt="" class="image"> 
+                <div class="dots-container ">
+                    <div class="dot" onclick="updateDots(0)"></div>
+                    <div class="dot" onclick="updateDots(1)"></div>
+                    <div class="dot" onclick="updateDots(2)"></div>
+                    <div class="dot" onclick="updateDots(3)"></div>
+                </div>
+                <div onclick="prevSlide()" class="btn" id="prev"><i class="fa-solid fa-angle-left"></i></div>
+                <div onclick="nextSlide()" class="btn"><i class="fa-solid fa-chevron-right"></i></div>
+            </div>
+        </div>
+        <div class="count">
+            <div class="time">
+                <div class="logo">
+                    <i class="fa-solid fa-stopwatch" id="timer"></i>
+                </div>
+                <div class="units" id="units">
+                    <div class="unit">
+                        <span id="months">00</span>
+                        <span id="months lbl">month</span>
+                    </div>
+                    <div class="unit">
+                        <span id="days">00</span>
+                        <span id="days lbl">days</span>
+                    </div>
+                    <div class="unit">
+                        <span id="hours">00</span>
+                        <span id="hours lbl">hours</span>
+                    </div>
+                    <div class="unit">
+                        <span id="minutes">00</span>
+                        <span id="minutes lbl">minutes</span>
+                    </div>
+                    <div class="unit">
+                        <span id="seconds">00</span>
+                        <span id="seconds lbl">seconds</span>
+                    </div>
+                </div>
+                <p id="exp"></p>
+            </div>
+            <div class="date">available in 19 april</div>
+        </div>
+    </div>
+</body>
+<script>
+    
+    const targetDate = new Date('2024-04-19T05:00:00').getTime();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    function padZeroes(value) {
+        return value.toString().padStart(2, '0');
+    }
+
+    function updateCountdown() {
+        const currentDate = new Date().getTime();
+        const timeRemaining = targetDate - currentDate;
+
+        if (timeRemaining <= 0) {
+            clearInterval(countdownInterval);
+            // document.getElementById('months lbl').innerHTML ='';
+            // document.getElementById('days lbl').innerHTML = '';
+            // document.getElementById('hours lbl').innerHTML = '';
+            // document.getElementById('minutes lbl').innerHTML = '';
+            // document.getElementById('seconds lbl').innerHTML = '';
+            document.getElementById('months').innerHTML ='';
+            document.getElementById('days').innerHTML = '';
+            document.getElementById('hours').innerHTML = '';
+            document.getElementById('minutes').innerHTML = '';
+            document.getElementById('seconds').innerHTML = '';
+            document.getElementById('exp').innerHTML="countdown expired!!";
+        } else {
+            const months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            document.getElementById('months').innerHTML = padZeroes(months);
+            document.getElementById('days').innerHTML = padZeroes(days);
+            document.getElementById('hours').innerHTML = padZeroes(hours);
+            document.getElementById('minutes').innerHTML = padZeroes(minutes);
+            document.getElementById('seconds').innerHTML = padZeroes(seconds);
+        }
+    }
+
+    updateCountdown();
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.image');
+    let dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.style.display = 'block';
+            } else {
+                slide.style.display = 'none';
+            }
+        });
+        updateDots(index);
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function updateDots(index) {
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    showSlide(currentSlide);
+
+</script>
+</html>
